@@ -29,6 +29,7 @@ const closeMovieDeletionModal = () => {
 };
 
 const deleteMovie = (movieId) => {
+    console.log(movieId);
     let movieIndex = 0;
     for (const movie of movies) {
         if (movie.id === movieId) {
@@ -58,7 +59,8 @@ const deleteMovieHandler = (movieId) => {
     cancelDeletionButton.removeEventListener('click', closeMovieDeletionModal);
 
     cancelDeletionButton.addEventListener('click', closeMovieDeletionModal);
-    confirmDeletionButton.addEventListener('click', deleteMovie.bind(null, movieId));
+    // confirmDeletionButton.addEventListener('click', deleteMovie.bind(null, movieId));
+    confirmDeletionButton.addEventListener('click', () => {deleteMovie(movieId)});
 };
 
 const renderNewMovieElement = (id, title, imageUrl, rating) => {
