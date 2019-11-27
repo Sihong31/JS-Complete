@@ -52,3 +52,77 @@ multiplier = 1.2;
 
 console.log(calculateVatAmount(100))
 console.log(calculateVatAmount(200));
+
+let userName = 'Bob';
+
+function greetUser() {
+  let name = 'George';
+  console.log('Hi ' + name);
+}
+
+let name = 'Bob';
+
+userName = 'Helen';
+
+greetUser();
+
+// function powerOf(x, power) {
+//   let result = 1;
+
+//   for (let i = 0; i < power; i++) {
+//     result *= x;
+//   }
+
+//   return result;
+// }
+
+function powerOf(x, power) {
+  if (power === 1) {
+    return x;
+  }
+  return x * powerOf(x, power - 1);
+}
+
+console.log(powerOf(2, 3));
+
+const myself = {
+  name: 'Bob',
+  friends: [
+    {
+      name: 'Phil',
+      friends: [
+        {
+          name: 'Chris',
+          friends: [
+            {
+              name: 'Halbert'
+            },
+            {
+              name: 'Amilia'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Julia'
+    }
+  ]
+};
+
+function getFriendNames(person) {
+  const collectedNames = [];
+
+  if (!person.friends) {
+    return [];
+  }
+
+  for (const friend of person.friends) {
+    collectedNames.push(friend.name);
+    collectedNames.push(...getFriendNames(friend));
+  }
+
+  return collectedNames;
+}
+
+console.log(getFriendNames(myself));
