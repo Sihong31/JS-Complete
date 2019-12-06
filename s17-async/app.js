@@ -64,6 +64,20 @@ async function trackUserHandler() {
 
 button.addEventListener('click', trackUserHandler);
 
+Promise.race([getPosition(), setTimer(1000)]).then(data => {
+  console.log(data);
+});
+
+// if one promise fails then only error shows
+Promise.all([getPosition(), setTimer(1000)]).then(allPromiseData => {
+  console.log(allPromiseData);
+});
+
+// if one promise fails you still get status of other promises
+Promise.allSettled([getPosition(), setTimer(1000)]).then(allPromiseData => {
+  console.log(allPromiseData);
+});
+
 // let result = 0;
 
 // for (let i = 0; i <100000000; i++) {
