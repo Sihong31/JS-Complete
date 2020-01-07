@@ -1,4 +1,8 @@
-class ProjectList {
+// import { moveElement, DOMHelper, clearEventListeners } from '././../utility/dom-helper.js';
+import * as DOMHelp from '././../utility/dom-helper.js'; 
+import { ProjectItem as ProjItem } from './project-item.js';
+
+export class ProjectList {
     projects = [];
   
     constructor(type) {
@@ -6,7 +10,7 @@ class ProjectList {
       const prjItems = document.querySelectorAll(`#${type}-projects li`);
       for (const prjItem of prjItems) {
         this.projects.push(
-          new ProjectItem(prjItem.id, this.switchProject.bind(this), this.type)
+          new ProjItem(prjItem.id, this.switchProject.bind(this), this.type)
         );
       }
       console.log(this.projects);
@@ -55,7 +59,7 @@ class ProjectList {
   
     addProject(project) {
       this.projects.push(project);
-      DOMHelper.moveElement(project.id, `#${this.type}-projects ul`);
+      DOMHelp.moveElement(project.id, `#${this.type}-projects ul`);
       project.update(this.switchProject.bind(this), this.type);
     }
   
